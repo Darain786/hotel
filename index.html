@@ -20,8 +20,7 @@
             var optac=document.getElementById("optac");
             var optlocker=document.getElementById("optlocker");
 
-            var days=document.getElementById("days").value
-            var person=document.getElementById("person").value
+            var pic=document.getElementById("pic");
 
            
 
@@ -35,10 +34,12 @@
             if(optdeluxe.checked){
                 RoomName=optdeluxe.value;
                 RoomCost=2500;
+                pic.src="public/img/deluxe.jpg"
             }
             if(optsuite.checked){
                 RoomName=optsuite.value;
                 RoomCost=4000;
+                pic.src="public/img/suite1.jpg"
             }
             if(optac.checked){
                 AmenitiesName+=optac.value +"<br>";
@@ -50,8 +51,17 @@
                 AmenitiesCost=300;
                 RoomCost+=AmenitiesCost
             }
-            total=RoomCost*days
+            
+            var person=document.getElementById("person").value
+            if(person>2){
+                extraperson=(person-2)*1000
+            }
+            else{
+                extraperson=0;
+            }
 
+            var days=document.getElementById("days").value
+            total=(extraperson+RoomCost)*days
            
             advance=document.getElementById("advanceamt").value
             balance=total-advance
@@ -62,6 +72,7 @@
             document.getElementById("lblperson").innerHTML=person;
             document.getElementById("lbladvance").innerHTML=advance
             document.getElementById("lblbalance").innerHTML=` &#8377;${balance}`;
+
            
 
 
@@ -103,7 +114,10 @@
                             <dt>Total No Of Days</dt>
                             <dd><input type="number"class="form-control"id="days"></dd>
                             <dt>Total No Of Person</dt>
-                            <dd><input type="number"class="form-control"id="person"></dd>
+                            <dd>
+                                <input type="number"class="form-control"id="person">
+                                <h6>Note : More Than 2 Person So Charges is &#8377; 1000 Per Person</h6>
+                            </dd>
                         </dl>
                     </div>
                 </div>
@@ -206,23 +220,26 @@
                                     </div>
                                     <div class="modal-body">
                                         <dl class="row">
-                                            <dt class="col-4">Customer Name</dt>
-                                            <dd id="lblname"class="col-8"></dd>
-                                            <dt class="col-4">Check In Date</dt>
-                                            <dd id="lbldate"class="col-8"></dd>
-                                            <dt class="col-4">Total No Of Days</dt>
-                                            <dd id="lbldays"class="col-8"></dd>
-                                            <dt class="col-4">Total No Of Persons</dt>
-                                            <dd id="lblperson"class="col-8"></dd>
-                                            <dt class="col-4">Room Type</dt>
-                                            <dd id="lblroom"class="col-8"></dd>
-                                            <dt class="col-4">Amenities</dt>
-                                            <dd id="lblamenties"class="col-8"></dd>
-                                            <dt class="col-4">Advance Amount</dt>
-                                            <dd id="lbladvance"class="col-8"></dd>
-                                            <dt class="col-4">Balace Amount</dt>
-                                            <dd id="lblbalance"class="col-8"></dd>
+                                            <dt class="col-6">Customer Name</dt>
+                                            <dd id="lblname"class="col-6"></dd>
+                                            <dt class="col-6">Check In Date</dt>
+                                            <dd id="lbldate"class="col-6"></dd>
+                                            <dt class="col-6">Total No Of Days</dt>
+                                            <dd id="lbldays"class="col-6"></dd>
+                                            <dt class="col-6">Total No Of Persons</dt>
+                                            <dd id="lblperson"class="col-6"></dd>
+                                            <dt class="col-6">Room Type</dt>
+                                            <dd id="lblroom"class="col-6"></dd>
+                                            <dt class="col-6">Amenities</dt>
+                                            <dd id="lblamenties"class="col-6"></dd>
+                                            <dt class="col-6">Advance Amount</dt>
+                                            <dd id="lbladvance"class="col-6"></dd>
+                                            <dt class="col-6">Balace Amount</dt>
+                                            <dd id="lblbalance"class="col-6"></dd>
                                         </dl>
+                                    </div>
+                                    <div class="p-2">
+                                        <img  id="pic"height="230px"width="100%">
                                     </div>
                                 </div>
                             </div>
